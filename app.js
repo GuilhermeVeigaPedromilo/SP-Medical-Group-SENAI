@@ -32,6 +32,10 @@ app.use(
     saveUninitialized: true,
   })
 );
+
+// app.use(express.static(__dirname + '/views'));
+// app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(express.static(__dirname + '/views'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -366,15 +370,28 @@ app.post('/register', (req, res) => {
 
 app.get('/Blog', (req,res) => {
   if (req.session.loggedin && req.session.name) {
-    db.query('SELECT * FROM mensagens', (err, result) => {
+    db.query('SELECT * FROM Blog', (err, result) => {
       if (err) throw err;
-      res.render('Blog', { req: req, mensagens: result });
+      res.render('Blog', { req: req, Blog: result });
       console.log(req.session);
     });
 } else {
   // Se não estiver autenticado, redireciona para a página de login
   res.send(404, '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon"><title>SP-Medical Group</title><style>body{align-items:center;text-align:center;justify-content:center;background-color:rgb(240,240,240);}a{color:black;}.logo{margin-top:100px;}</style></head><body><img class="logo" src="assets/SP-Medical Group/assets/img/logo.png"><br><br><br><br><br><br><br><br><br><br><br><br><a href="/login">É necessário fazer login para acessar sua página</a></body></html>');
 }
+});
+
+app.post('/Blog', (req, res) => {
+  const { nome, postagem } = req.body;
+  const query = 'INSERT INTO Blog (nome, postagem) VALUES (?, ?)';
+  db.query(query, [nome, postagem], (err, results) => {
+    if (err) {
+      console.error('Erro ao mandar mensagem', err);
+      res.send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon"><title>SP-Medical Group</title><style>body{align-items:center;text-align:center;justify-content:center;background-color:rgb(240,240,240);}a{color:black;}.logo{margin-top:100px;}</style></head><body><img class="logo" src="assets/SP-Medical Group/assets/img/logo.png"><br><br><br><br><br><br><br><br><br><br><br><br><a href="/">Erro ao tentar enviar mensagem</a></body></html>');
+    } else {
+      res.send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon"><title>SP-Medical Group</title><style>body{align-items:center;text-align:center;justify-content:center;background-color:rgb(240,240,240);}a{color:black;}.logo{margin-top:100px;}</style></head><body><img class="logo" src="assets/SP-Medical Group/assets/img/logo.png"><br><br><br><br><br><br><br><br><br><br><br><br><a href="/">Obrigado pela seu comentário, volte para sua página</a></body></html>');
+    }
+  });
 });
 
 app.listen(8321, () => {

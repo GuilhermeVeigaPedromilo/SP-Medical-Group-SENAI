@@ -33,7 +33,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/SP-Medical Group/assets/css/style.css" rel="stylesheet">
-
+  <link href="assets/css/Blog.css" rel="stylesheet">
   <!-- Adicione o link para o Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Adicione o link para o jQuery -->
@@ -79,7 +79,7 @@
 
       <nav id="navbar" class="navbar order-last order-lg-0">
         <ul>
-          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto active" href="#heroblog">Home</a></li>
           <li><a class="nav-link scrollto" href="#about">Sobre Nós</a></li>
           <li><a class="nav-link scrollto" href="#departments">Deparamentos</a></li>
           <li><a class="nav-link scrollto" href="#doctors">Doutores</a></li>
@@ -90,12 +90,48 @@
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
-
-      <a href="/Cadastro" class="appointment-btn scrollto"><span class="d-none d-md-inline"></span> Cadastre-se</a>
-
-    </div>
   </header><!-- End Header -->
+  <!-- ======= Hero Section ======= -->
+  <section id="heroblog" class="d-flex align-items-center">
+    <div class="container">
+      <h1>Bem vindo(a) ao Blog do SP Medical Group</h1>
+      <h2>Faça postagens, converse com outras pessoas e fique por dentro de atualizações do SP Medical Group</h2>
+    </div>
+  </section><!-- End Hero -->
 
+  <section class="section" id="messages">
+    <!-- Área para exibir mensagens -->
+
+          <% Blog.forEach(Blog=> { %>
+
+                      <h3><%=Blog.nome%></h3>
+
+                      <p><%=Blog.postagem%></p>
+                
+              <% }); %>
+
+</section>
+
+<section class="section" id="form">
+  <h2>Deixe sua Mensagem</h2>
+  <form id="messageForm" action="/Blog" method="post">
+      <label for="nome">Nome:</label>
+      <input type="text" id="nome" name="nome" value="<%= req.session.name %>" required>
+      <label for="postagem">Mensagem:</label>
+      <textarea type="text" id="postagem" name="postagem"  required></textarea>
+      <button type="submit">Enviar Mensagem</button>
+  </form>
+</section>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  
+
+
+  
     </body>
+    <style>
 
+
+    </style>
+
+    
     </html>
