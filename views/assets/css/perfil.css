@@ -1,0 +1,31 @@
+h1 {
+    font-family: Georgia;
+}
+
+.logo {
+    display: block;
+    margin-top: 365px;
+    margin-left: 35px;
+}
+
+.divisao {
+    display: block;
+    width: 1px;
+    height: 500px;
+    background-color: black;
+    margin-top: -300px;
+    margin-left: 635px;
+}
+
+.informacoes {
+    display: block;
+    margin-top: -500px;
+    margin-left: 700px;
+    width: 500px;
+}
+
+td {
+    display: flex;
+    flex-direction: row;
+    font-family: georgia;
+}
