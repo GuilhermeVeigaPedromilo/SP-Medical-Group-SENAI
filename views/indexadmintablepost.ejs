@@ -111,9 +111,9 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Consultas
                         </a>
-                        <a class="nav-link" href="/indexadmintablepost">
+                        <a class="nav-link" href="/indexadmintablemensagens">
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Blog
+                            Mensagens
                         </a>
                     </div>
                 </div>
@@ -131,45 +131,32 @@
                 <div class="container-fluid px-4">
                     <h1 class="mt-4">Painel de Controle</h1>
                     <ol class="breadcrumb mb-4">
-                        <li class="breadcrumb-item active">Tabela 'mensagens'</li>
+                        <li class="breadcrumb-item active">Tabela 'Blog'</li>
                     </ol>
                 </div>
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        Informações referentes as mensagens enviadas
+                        Informações referentes as postagens feitas
                     </div>
                     <div class="card-body">
                         <div class="container">
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
-                                        <th>Nome Completo</th>
-                                        <th>E-mail</th>
-                                        <th>Telefone</th>
-                                        <th>Assunto</th>
-                                        <th>Mensagem</th>
+                                        <th>Nome</th>
+                                        <th>Postagem</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <% mensagens.forEach(mensagens=> { %>
+                                    <% Blog.forEach(Blog=> { %>
                                         <tr>
                                             <td>
-                                                <%=mensagens.nomecompleto%>
+                                                <%=Blog.nome%>
                                             </td>
                                             <td>
-                                                <%=mensagens.email%>
+                                                <%=Blog.postagem%>
                                             </td>
-                                            <td>
-                                                <%=mensagens.telefone%>
-                                            </td>
-                                            <td>
-                                                <%=mensagens.assunto%>
-                                            </td>
-                                            <td>
-                                                <%=mensagens.mensagem%>
-                                            </td>
-                                        </tr>
                                         <% }); %>
                                 </tbody>
                             </table>

@@ -59,6 +59,10 @@ function abrirPopupEsqueceuSenha() {
     window.open('esqueceu_senha.html', 'NomeDaJanela', 'width=1000,height=800');
 }
 
+function abrirPopupBlog() {
+    window.open('Blog', 'NomeDaJanela', 'width=1000,height=800');
+}
+
 function informacaoMedica() {
     const form = document.getElementById('');
 
