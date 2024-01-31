@@ -104,21 +104,27 @@
 
           <% Blog.forEach(Blog=> { %>
 
-                      <h3><%=Blog.nome%></h3>
-
-                      <p><%=Blog.postagem%></p>
-                
-              <% }); %>
+                  <section  id="Postagens" >
+                      <img src="assets/SP-Medical Group/assets/img/icone.png"><%=Blog.nome%>
+                        </section>
+                      <div class="Mensagem" ><%=Blog.postagem%></div><br><br>
+                       
+                      <% }); %>
+                      
+                  
+              
 
 </section>
 
-<section class="section" id="form">
-  <h2>Deixe sua Mensagem</h2>
+<section class="sectionForm" id="form">
+  <h2>Faça sua postagem</h2>
   <form id="messageForm" action="/Blog" method="post">
       <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" value="<%= req.session.name %>" required>
+      <input type="text" id="nome" name="nome" value="<%= req.session.name %>" required><br>
+      <br>
       <label for="postagem">Mensagem:</label>
-      <textarea type="text" id="postagem" name="postagem"  required></textarea>
+      <textarea type="text" id="postagem" name="postagem"  required></textarea><br>
+      <br>
       <button type="submit">Enviar Mensagem</button>
   </form>
 </section>
@@ -128,10 +134,6 @@
 
   
     </body>
-    <style>
-
-
-    </style>
 
     
     </html>

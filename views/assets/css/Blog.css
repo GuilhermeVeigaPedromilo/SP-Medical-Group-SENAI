@@ -6,6 +6,7 @@
     height: 90vh;
     background-size: cover;
     margin-bottom: -200px;
+    background: url('../SP-Medical Group/assets/img/hero-bg.jpg') center/cover no-repeat;
   }
   
   #heroblog .container {
@@ -83,45 +84,83 @@
   .section {
       max-width: 100%;
       margin: 20px auto;
-      background-color: white;
+      background-color: rgb(255, 255, 255);
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border: 20px solid rgb(220, 241, 255);
+      border-bottom: none;
+      border-left: none;
+      border-right: none;
   }
 
-  .sectionpost {
-    max-width: auto;
+  .sectionForm {
+    max-width: 100%;
     margin: 20px auto;
     background-color: white;
     padding: 20px;
-    border-radius: 8px, blue;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
   
   label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
   }
   
   input,
   textarea {
       width: 100%;
       padding: 8px;
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       border: 1px solid #ccc;
       border-radius: 4px;
       box-sizing: border-box;
   }
   
   button {
-      background-color: #4cafaa;
+    display: block;
+    width: 200px;
+    height: 50px;
+      background-color: #51b3f1;
       color: white;
       padding: 10px;
       border: none;
-      border-radius: 10px;
       cursor: pointer;
+      margin-top: 2.5%;
   }
   
   button:hover {
-      background-color: #1876ce;
+      background-color: #428ed4;
+      transition-delay: 0.4s;
+  }
+
+  #Postagens {
+    width: 700px;
+    background-color: rgb(247, 247, 247);
+    padding: 10px;
+    border: 1px solid black;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15x;
+    border-bottom: none;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-size: 20px;
+  }
+
+  .Mensagem {
+    width: 700px;
+    height: auto;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid black;
+    border-top: none;
+    border-radius: 8px solid;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  img {
+    width: 45px;
+    height: 45px;
+    font-size: 45px;
   }
