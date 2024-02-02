@@ -111,10 +111,6 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                             Consultas
                         </a>
-                        <a class="nav-link" href="/indexadmintablemensagens">
-                            <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                            Mensagens
-                        </a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
@@ -137,7 +133,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <i class="fas fa-table me-1"></i>
-                        Informações referentes as postagens feitas
+                        Informações referentes as postagens feitas (usuários com valores NULL, já tem as informações contidas na tabela de usuários do sistema)
                     </div>
                     <div class="card-body">
                         <div class="container">
@@ -146,6 +142,8 @@
                                     <tr>
                                         <th>Nome</th>
                                         <th>Postagem</th>
+                                        <th>E-mail</th>
+                                        <th>Telefone</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -156,6 +154,12 @@
                                             </td>
                                             <td>
                                                 <%=Blog.postagem%>
+                                            </td>
+                                            <td>
+                                                <%=Blog.email%>
+                                            </td>
+                                            <td>
+                                                <%=Blog.telefone%>
                                             </td>
                                         <% }); %>
                                 </tbody>

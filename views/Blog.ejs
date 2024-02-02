@@ -92,28 +92,47 @@
       </nav><!-- .navbar -->
   </header><!-- End Header -->
   <!-- ======= Hero Section ======= -->
-  <section id="heroblog"  class="d-flex align-items-center">
+  <section id="heroblog" class="d-flex align-items-center">
     <div class="container">
-      <h1>Bem vindo(a) ao Blog do SP Medical Group</h1>
-      <h2>Faça postagens, converse com outras pessoas e fique por dentro de atualizações do SP Medical Group</h2>
+        <canvas id="mycanvas" width="100%" height="100%"></canvas>
+        <h1>Bem-vindo(a) ao Blog do SP Medical Group</h1>
+        <h2>Faça postagens, converse com outras pessoas e fique por dentro de atualizações do SP Medical Group</h2>
     </div>
-    <script src="particles-js"></script>
-  </section><!-- End Hero -->
+</section>
 
-  <section class="section" id="messages">
+<style>
+    * { padding: 0; margin: 0; }
+    body { background-color: white; }
+    #mycanvas { position: absolute; margin-left: -20%;  }
+</style>
+
+<script src="assets/js/particles.js"></script>
+
+
+  <section class="section">
     <!-- Área para exibir mensagens -->
 
-          <% Blog.forEach(Blog=> { %>
-
-                  <section  id="Postagens" >
-                      <img src="assets/SP-Medical Group/assets/img/icone.png"><%=Blog.nome%>
-                        </section>
-                      <div class="Mensagem" ><%=Blog.postagem%></div><br><br>
-                       
-                      <% }); %>
-                      
-                  
-              
+    <% Blog.forEach(Blog => { %>
+          <% if (Blog.id % 2 === 0) { %>
+            <div id="posts">
+              <div class="titlePost">
+                <img src="assets/SP-Medical Group/assets/img/icone.png"><p><%= Blog.nome %></p>
+              </div>
+              <div class="textPost">
+                <p><%= Blog.postagem %></p>
+              </div>
+            </div>
+          <% } else  { %>
+            <div id="posts" class="right">
+              <div class="titlePost">
+                <img src="assets/SP-Medical Group/assets/img/icone.png"><p><%= Blog.nome %></p>
+              </div>
+              <div class="textPost">
+                <p><%= Blog.postagem %></p>
+              </div>
+            </div>
+          <% } %>
+  <% }); %>    
 
 </section>
 

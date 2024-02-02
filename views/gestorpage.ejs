@@ -51,7 +51,7 @@
                         <div class="sb-sidenav-menu-heading">Edição de Tabela</div>
                         <a class="nav-link" href="http://localhost/phpmyadmin">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Mensagens
+                            Blog
                         </a>
                         <div class="sb-sidenav-menu-heading">Formas de Contato</div>
                         <a class="nav-link collapsed" href="assets/gestorpage/#" data-bs-toggle="collapse"
@@ -104,27 +104,26 @@
                             <thead>
                                 <tr>
                                     <th>Nome Completo</th>
+                                    <th>Postagem</th>
                                     <th>E-mail</th>
                                     <th>Telefone</th>
-                                    <th>Mensagem</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <% mensagens.forEach(mensagens=> { %>
+                                <% Blog.forEach(Blog=> { %>
                                     <tr>
                                         <td>
-                                            <%=mensagens.nomecompleto%>
+                                            <%=Blog.nome%>
                                         </td>
                                         <td>
-                                            <%=mensagens.email%>
+                                            <%=Blog.postagem%>
                                         </td>
                                         <td>
-                                            <%=mensagens.telefone%>
+                                            <%=Blog.email%>
                                         </td>
                                         <td>
-                                            <%=mensagens.mensagem%>
+                                            <%=Blog.telefone%>
                                         </td>
-                                    </tr>
                                     <% }); %>
                             </tbody>
                         </table>

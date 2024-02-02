@@ -64,9 +64,9 @@ app.get('/', (req, res) => {
 });
 
 app.post('/index', (req, res) => {
-  const { nomecompleto, email, assunto, mensagem, telefone } = req.body;
-  const query = 'INSERT INTO mensagens (nomecompleto, email, assunto, mensagem, telefone) VALUES (?, ?, ?, ?, ?)';
-  db.query(query, [nomecompleto, email, assunto, mensagem, telefone], (err, results) => {
+  const { nome, email, postagem, telefone } = req.body;
+  const query = 'INSERT INTO Blog (nome, email, postagem, telefone) VALUES (?, ?, ?, ?)';
+  db.query(query, [nome, email, postagem, telefone], (err, results) => {
     if (err) {
       console.error('Erro ao mandar mensagem', err);
       res.send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon"><title>SP-Medical Group</title><style>body{align-items:center;text-align:center;justify-content:center;background-color:rgb(240,240,240);}a{color:black;}.logo{margin-top:100px;}</style></head><body><img class="logo" src="assets/SP-Medical Group/assets/img/logo.png"><br><br><br><br><br><br><br><br><br><br><br><br><a href="/">Erro ao tentar enviar mensagem</a></body></html>');
@@ -195,9 +195,9 @@ app.post('/agendamento', (req, res) => {
 app.get('/gestorpage', (req, res) => {
   if (req.session.loggedin && req.session.name) {
     if (req.session.tipoUsuario === 'Gestor' || req.session.tipoUsuario === 'Administrador') {
-      db.query('SELECT * FROM mensagens', (err, result) => {
+      db.query('SELECT * FROM Blog', (err, result) => {
         if (err) throw err;
-        res.render('gestorpage', { req: req, mensagens: result });
+        res.render('gestorpage', { req: req, Blog: result });
         console.log(req.session);
       });
       // Tentativa de invasão por usuários sem permissão, leva o usuário ser desconectado da págian
@@ -405,9 +405,9 @@ app.get('/Blog', (req,res) => {
 });
 
 app.post('/Blog', (req, res) => {
-  const { nome, postagem } = req.body;
-  const query = 'INSERT INTO Blog (nome, postagem) VALUES (?, ?)';
-  db.query(query, [nome, postagem], (err, results) => {
+  const { nome, postagem, email, telefone } = req.body;
+  const query = 'INSERT INTO Blog (nome, postagem, email, telefone) VALUES (?, ?, "NULL", "NULL")';
+  db.query(query, [nome, postagem, email, telefone], (err, results) => {
     if (err) {
       console.error('Erro ao mandar mensagem', err);
       res.send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon"><title>SP-Medical Group</title><style>body{align-items:center;text-align:center;justify-content:center;background-color:rgb(240,240,240);}a{color:black;}.logo{margin-top:100px;}</style></head><body><img class="logo" src="assets/SP-Medical Group/assets/img/logo.png"><br><br><br><br><br><br><br><br><br><br><br><br><a href="/Blog">Erro ao tentar enviar mensagem</a></body></html>');

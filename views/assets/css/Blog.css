@@ -1,12 +1,19 @@
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 #heroblog {
     width: 100%;
-    height: 90vh;
+    height: 70vh;
     background-size: cover;
-    margin-bottom: -200px;
-    background: url;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
   #heroblog .container {
@@ -19,6 +26,7 @@
     font-weight: 700;
     line-height: 56px;
     text-transform: uppercase;
+    margin-top: 200px;
     color: #174877;
   }
   
@@ -80,19 +88,25 @@
       height: 110vh;
     }
   }
+
+  .section{
+    width: 100%;
+    padding: 20px;
+    background-color: #f6fbff;
+  }
   
-  .section {
+  /* .section {
       max-width: 100%;
       margin: 20px auto;
       background-color: rgb(255, 255, 255);
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      border: 20px solid rgb(220, 241, 255);
+      border: 30px solid rgb(207, 232, 248);
       border-bottom: none;
       border-left: none;
       border-right: none;
-  }
+  } */
 
   .sectionForm {
     max-width: 100%;
@@ -136,31 +150,44 @@
       transition-delay: 0.4s;
   }
 
-  #Postagens {
-    width: 700px;
-    background-color: rgb(247, 247, 247);
-    padding: 10px;
-    border: 1px solid black;
-    border-top-right-radius: 15px;
-    border-top-left-radius: 15x;
-    border-bottom: none;
+  #posts{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-size: 20px;
+    padding: 20px;
+    width: 40%;
+    background-color: white;
+    border-radius: 20px;
   }
 
-  .Mensagem {
-    width: 700px;
-    height: auto;
-    background-color: white;
-    padding: 10px;
-    border: 1px solid black;
-    border-top: none;
-    border-radius: 8px solid;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  .textPost{
+    word-wrap: break-word;
+  }
+
+  .titlePost{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #000;
+    margin-bottom: 10px;
+  }
+
+  .titlePost img{
+    margin-top: -17px;
+    margin-right: 5px;
   }
 
   img {
     width: 45px;
     height: 45px;
     font-size: 45px;
+  }
+
+  .titlePost p{
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .right{
+    margin-left: auto;
+    margin-right: 0; 
   }

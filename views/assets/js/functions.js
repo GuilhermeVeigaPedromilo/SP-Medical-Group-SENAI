@@ -87,7 +87,7 @@ let alertaExibido = false;
 
 function enviarMensagem() {
     if (!alertaExibido) {
-        alert("Mande uma mensagem para nós!                                   Responderemos em até 48 horas via E-mail");
+        alert("Faça uma postagem no nosso Blog!                                   Converse com pessoas, tire dúvidas e saiba sobre nossas atulizaçõe");
         alertaExibido = true;
     }
 }
