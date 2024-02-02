@@ -322,6 +322,7 @@ app.get('/indexadmintablepost', (req, res) => {
   }
 });
 
+
 app.get('/Cadastro', (req, res) => {
   res.render('Cadastro');
 });
@@ -416,6 +417,39 @@ app.post('/Blog', (req, res) => {
     }
   });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Rota de exclusão com parâmetro id
+app.delete((req, res ) => {
+  if (!req.params.id) {
+    throw "É necessário ter um id para deletar o usuário";
+  } 
+  var sql = "DELETE FROM Blog WHERE id=?";
+  connection.query(sql, req.params.id, (err, result) => {
+  if (err) throw err;
+  res.status(200).send({
+    sucess: true,
+    mensgame: "A postagem foi deletada",
+
+   })
+  });
+});
+
+
+
+
+
 
 app.listen(8321, () => {
   console.log('Servidor rodando na porta 8321');
