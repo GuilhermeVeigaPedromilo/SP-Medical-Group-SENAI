@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 31/01/2024 às 15:46
+-- Tempo de geração: 02/02/2024 às 13:12
 -- Versão do servidor: 8.0.36-0ubuntu0.22.04.1
 -- Versão do PHP: 8.1.2-1ubuntu2.14
 
@@ -30,18 +30,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `Blog` (
   `id` int NOT NULL,
   `nome` varchar(255) NOT NULL,
-  `postagem` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+  `postagem` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `telefone` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Despejando dados para a tabela `Blog`
 --
 
-INSERT INTO `Blog` (`id`, `nome`, `postagem`) VALUES
-(1, 'wwe', 'scsd'),
-(2, 'd cv', 'c xc'),
-(3, 'Pedromilo', 'Teste'),
-(4, 'Pedromilo', 'jadseihioes\\');
+INSERT INTO `Blog` (`id`, `nome`, `postagem`, `email`, `telefone`) VALUES
+(10, 'Admin A', 'FInalização do BLog\r\n', 'NULL', 'NULL'),
+(11, 'Admin b', 'eewaada', 'NULL', 'NULL');
 
 -- --------------------------------------------------------
 
@@ -68,21 +68,6 @@ INSERT INTO `consultas` (`id`, `username`, `email`, `date`, `horario`, `medico`,
 (2, 'Guilherme Ped', 'guipedromilo@gmail.com', '2023-12-12', '18:30', 'Milena Shokan', ''),
 (3, 'Guilherme Ped', 'guipedromilo@gmail.com', '2023-12-20', '12:01', 'Walter White', ''),
 (4, 'Guilherme Ped', 'guipedromilo@gmail.com', '2023-12-22', '12:00', 'Miguel Tiradentes', 'Manutenção');
-
--- --------------------------------------------------------
-
---
--- Estrutura para tabela `mensagens`
---
-
-CREATE TABLE `mensagens` (
-  `id` int NOT NULL,
-  `nomecompleto` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `assunto` varchar(255) NOT NULL,
-  `mensagem` varchar(255) NOT NULL,
-  `telefone` varchar(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -138,12 +123,6 @@ ALTER TABLE `consultas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `mensagens`
---
-ALTER TABLE `mensagens`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Índices de tabela `users`
 --
 ALTER TABLE `users`
@@ -157,19 +136,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de tabela `Blog`
 --
 ALTER TABLE `Blog`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `consultas`
 --
 ALTER TABLE `consultas`
   MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de tabela `mensagens`
---
-ALTER TABLE `mensagens`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `users`
