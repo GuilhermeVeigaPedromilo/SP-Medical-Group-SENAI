@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Tempo de geração: 02/02/2024 às 13:12
--- Versão do servidor: 8.0.36-0ubuntu0.22.04.1
--- Versão do PHP: 8.1.2-1ubuntu2.14
+-- Tempo de geração: 13-Fev-2024 às 20:46
+-- Versão do servidor: 8.0.34-0ubuntu0.22.04.1
+-- versão do PHP: 8.1.2-1ubuntu2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,29 +24,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `Blog`
+-- Estrutura da tabela `Blog`
 --
 
 CREATE TABLE `Blog` (
   `id` int NOT NULL,
   `nome` varchar(255) NOT NULL,
+  `titulo` varchar(255) NOT NULL,
   `postagem` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `email` varchar(100) NOT NULL,
-  `telefone` varchar(25) NOT NULL
+  `data` timestamp NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Despejando dados para a tabela `Blog`
+-- Extraindo dados da tabela `Blog`
 --
 
-INSERT INTO `Blog` (`id`, `nome`, `postagem`, `email`, `telefone`) VALUES
-(10, 'Admin A', 'FInalização do BLog\r\n', 'NULL', 'NULL'),
-(11, 'Admin b', 'eewaada', 'NULL', 'NULL');
+INSERT INTO `Blog` (`id`, `nome`, `titulo`, `postagem`, `data`) VALUES
+(15, 'Admin A', 'DADS', 'sgrgdfdgdtgtgf', '2024-02-13 23:36:26');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `consultas`
+-- Estrutura da tabela `consultas`
 --
 
 CREATE TABLE `consultas` (
@@ -60,19 +59,17 @@ CREATE TABLE `consultas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `consultas`
+-- Extraindo dados da tabela `consultas`
 --
 
 INSERT INTO `consultas` (`id`, `username`, `email`, `date`, `horario`, `medico`, `informacoesamais`) VALUES
-(1, 'Guilherme Ped', 'guipedromilo@gmail.com', '2023-12-12', '18:00', 'Doctor Who', ''),
-(2, 'Guilherme Ped', 'guipedromilo@gmail.com', '2023-12-12', '18:30', 'Milena Shokan', ''),
-(3, 'Guilherme Ped', 'guipedromilo@gmail.com', '2023-12-20', '12:01', 'Walter White', ''),
-(4, 'Guilherme Ped', 'guipedromilo@gmail.com', '2023-12-22', '12:00', 'Miguel Tiradentes', 'Manutenção');
+(6, 'Admin A', 'guipedromilo@gmail.com', '0043-04-23', '03:04', 'Doctor Who', ''),
+(7, 'Admin A', 'guipedromilo@gmail.com', '4534-03-23', '04:34', 'Doctor Who', '');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `users`
+-- Estrutura da tabela `users`
 --
 
 CREATE TABLE `users` (
@@ -87,7 +84,7 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Despejando dados para a tabela `users`
+-- Extraindo dados da tabela `users`
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `cpf`, `sexo`, `datanascimento`, `email`, `tipo`) VALUES
@@ -101,48 +98,45 @@ INSERT INTO `users` (`id`, `username`, `password`, `cpf`, `sexo`, `datanasciment
 (38, 'Fátima dos Santos', '7c222fb2927d828af22f592134e8932480637c0d', '000.000.000-08', 'Feminino', '1999-03-14', 'fatima@gmail.com', 'Medico'),
 (39, 'Fernando Ferreiro', '7c222fb2927d828af22f592134e8932480637c0d', '000.000.000-09', 'Masculino', '2001-04-12', 'fernando@gmail.com', 'Gestor'),
 (40, 'Guilherme Ped', '7c222fb2927d828af22f592134e8932480637c0d', '000.000.000-00', 'Masculino', '2003-02-11', 'ped@gmail.com', 'user'),
-(46, 'A A', '356a192b7913b04c54574d18c28d46e6395428ab', '100.000.000-02', 'NaoInformado', '2023-12-13', 'a@ay.com', 'user'),
-(47, 'Joao', '40bd001563085fc35165329ea1ff5c5ecbdbbeef', '222.222.222-22', 'Masculino', '2023-12-16', 'carolinelvr@gmail.com', 'user'),
-(48, 'Admin B', '7c222fb2927d828af22f592134e8932480637c0d', '111.111.111-11', 'Masculino', '1992-05-11', 'admin@gmail.com', 'Administrador'),
-(49, 'Pedromilo', '7c222fb2927d828af22f592134e8932480637c0d', '888.888.888-81', 'Masculino', '2007-05-12', 'pedromil@pedrovsk.com', 'user');
+(48, 'Admin B', '7c222fb2927d828af22f592134e8932480637c0d', '111.111.111-11', 'Masculino', '1992-05-11', 'admin@gmail.com', 'Administrador');
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices de tabela `Blog`
+-- Índices para tabela `Blog`
 --
 ALTER TABLE `Blog`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `consultas`
+-- Índices para tabela `consultas`
 --
 ALTER TABLE `consultas`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices de tabela `users`
+-- Índices para tabela `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT de tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `Blog`
 --
 ALTER TABLE `Blog`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `consultas`
 --
 ALTER TABLE `consultas`
-  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `users`
