@@ -26,8 +26,6 @@
       <h2>Agendar Consulta Médica</h2>
       <form action="/agendamento" method="post" id="consultas">
 
-        <input id="username" name="username" value="<%=req.session.name%>" required><br>
-
         <input placeholder="Ex: exemplo@email.com" oninput="validarEmail(this)" type="text" name="email" id="email" required><br>
 
         <input placeholder="Horário" type="date" name="date" id="date" required><br>

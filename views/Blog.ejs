@@ -116,20 +116,22 @@
           <% if (Blog.id % 2 === 0) { %>
             <div id="posts">
               <div class="titlePost">
-                <img src="assets/SP-Medical Group/assets/img/icone.png"><p><%= Blog.nome %></p>
+                <b><%= Blog.titulo %></p></b>
               </div>
               <div class="textPost">
-                <p><%= Blog.postagem %></p>
+                <p><%- Blog.postagem %></p>
               </div>
+              <p class="especificacao" >Autor: <%= Blog.nome %><br><%= Blog.data %></p>
             </div>
           <% } else  { %>
             <div id="posts" class="right">
               <div class="titlePost">
-                <img src="assets/SP-Medical Group/assets/img/icone.png"><p><%= Blog.nome %></p>
+                <b><%= Blog.titulo %></p></b>
               </div>
               <div class="textPost">
-                <p><%= Blog.postagem %></p>
+                <p><%- Blog.postagem %></p>
               </div>
+              <p class="especificacao" >Autor: <%= Blog.nome %><br><%= Blog.data %></p>
             </div>
           <% } %>
   <% }); %>    
@@ -137,10 +139,10 @@
 </section>
 
 <section class="sectionForm" id="form">
-  <h2>Faça sua postagem</h2>
+  <h2>Faça sua postagem - Ou veja suas postagens<a href="/mypost"> aqui</a></h2>
   <form id="messageForm" action="/Blog" method="post">
-      <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome" value="<%= req.session.name %>" required><br>
+      <label for="Titulo">Titulo da postagem:</label>
+      <input type="text" id="titulo" name="titulo" required><br>
       <br>
       <label for="postagem">Mensagem:</label>
       <textarea type="text" id="postagem" name="postagem"  required></textarea><br>

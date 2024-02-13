@@ -141,18 +141,23 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
+                                        <th>Id</th>
                                         <th>Usuário</th>
                                         <th>CPF</th>
                                         <th>Sexo</th>
                                         <th>Data de Nascimento</th>
                                         <th>Email</th>
                                         <th>Tipo</th>
+                                        <th>Exclusão</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
                                     <% users.forEach(users=> { %>
                                         <tr>
+                                            <td>
+                                                <%=users.id%>
+                                            </td>
                                             <td>
                                                 <%=users.username%>
                                             </td>
@@ -170,6 +175,9 @@
                                             </td>
                                             <td>
                                                 <%=users.tipo%>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-danger" href="/user/<%= users.id %>">DELETE</a>
                                             </td>
                                         </tr>
                                         <% }); %>

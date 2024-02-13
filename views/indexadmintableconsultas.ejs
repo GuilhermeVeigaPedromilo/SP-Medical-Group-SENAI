@@ -140,16 +140,21 @@
                             <table id="datatablesSimple">
                                 <thead>
                                     <tr>
+                                        <th>Id</th>
                                         <th>Nome</th>
                                         <th>Data</th>
                                         <th>Hora</th>
                                         <th>Médico</th>
                                         <th>Informações a mais</th>
+                                        <th>Exclusão</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <% consultas.forEach(consultas=> { %>
                                         <tr>
+                                            <td>
+                                                <%= consultas.id %>
+                                            </td>
                                             <td>
                                                 <%= consultas.username %>
                                             </td>
@@ -164,6 +169,9 @@
                                             </td>
                                             <td>
                                                 <%= consultas.informacoesamais%>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-danger" href="/consultas/<%= consultas.id %>">DELETE</a>
                                             </td>
                                         </tr>
                                         <% }); %>

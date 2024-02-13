@@ -103,15 +103,20 @@
                         <table id="datatablesSimple">
                             <thead>
                                 <tr>
+                                    <th>Id</th>
                                     <th>Nome Completo</th>
                                     <th>Postagem</th>
                                     <th>E-mail</th>
                                     <th>Telefone</th>
+                                    <th>Excluir</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <% Blog.forEach(Blog=> { %>
                                     <tr>
+                                        <td>
+                                            <%=Blog.id%>
+                                        </td>
                                         <td>
                                             <%=Blog.nome%>
                                         </td>
@@ -124,6 +129,7 @@
                                         <td>
                                             <%=Blog.telefone%>
                                         </td>
+                                        <td><a class="btn btn-danger" href="/blog/<%= Blog.id %>">DELETE</a></td>
                                     <% }); %>
                             </tbody>
                         </table>

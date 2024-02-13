@@ -4,6 +4,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const app = express();
 const path = require('path');
+const { NEWDATE } = require('mysql/lib/protocol/constants/types');
 
 
 // Configurar a conexão com o banco de dados MySQL
@@ -176,9 +177,8 @@ app.get('/agendamento', (req, res) => {
 });
 
 app.post('/agendamento', (req, res) => {
-
-
-  const { username, email, date, horario, medico, informacoesamais } = req.body;
+  const username = req.session.name;
+  const { email, date, horario, medico, informacoesamais } = req.body;
 
   const query = 'INSERT INTO consultas (username, email, date, horario, medico, informacoesamais) VALUES ( ?, ?, ?, ?, ?, ?)';
   db.query(query, [username, email, date, horario, medico, informacoesamais], (err, results) => {
@@ -406,50 +406,59 @@ app.get('/Blog', (req,res) => {
 });
 
 app.post('/Blog', (req, res) => {
-  const { nome, postagem, email, telefone } = req.body;
-  const query = 'INSERT INTO Blog (nome, postagem, email, telefone) VALUES (?, ?, "NULL", "NULL")';
-  db.query(query, [nome, postagem, email, telefone], (err, results) => {
+  const data = new Date();
+  const nome = req.session.name;
+  const { titulo, postagem, } = req.body;
+  const query = 'INSERT INTO Blog (nome, titulo, postagem, data ) VALUES (?, ?, ?, ?)';
+  db.query(query, [nome, titulo, postagem, data ], (err, results) => {
     if (err) {
       console.error('Erro ao mandar mensagem', err);
-      res.send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon"><title>SP-Medical Group</title><style>body{align-items:center;text-align:center;justify-content:center;background-color:rgb(240,240,240);}a{color:black;}.logo{margin-top:100px;}</style></head><body><img class="logo" src="assets/SP-Medical Group/assets/img/logo.png"><br><br><br><br><br><br><br><br><br><br><br><br><a href="/Blog">Erro ao tentar enviar mensagem</a></body></html>');
+      res.redirect('/Blog')
     } else {
       res.send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon"><title>SP-Medical Group</title><style>body{align-items:center;text-align:center;justify-content:center;background-color:rgb(240,240,240);}a{color:black;}.logo{margin-top:100px;}</style></head><body><img class="logo" src="assets/SP-Medical Group/assets/img/logo.png"><br><br><br><br><br><br><br><br><br><br><br><br><a href="/Blog">Obrigado pela sua postagem, volte para sua página</a></body></html>');
     }
   });
 });
 
+app.get('/mypost', (req,res) => {
+  if (req.session.loggedin && req.session.name) {
+    db.query('SELECT * FROM Blog', (err, row) => {
+      if (err) throw err;
+      res.render('mypost', { req: req, dados: row });
+      console.log(req.session);
+    });
+} else {
+  // Se não estiver autenticado, redireciona para a página de login
+  res.send(404, '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon"><title>SP-Medical Group</title><style>body{align-items:center;text-align:center;justify-content:center;background-color:rgb(240,240,240);}a{color:black;}.logo{margin-top:100px;}</style></head><body><img class="logo" src="assets/SP-Medical Group/assets/img/logo.png"><br><br><br><br><br><br><br><br><br><br><br><br><a href="/login">É necessário fazer login para acessar sua página</a></body></html>');
+}
+});
 
+app.get('/blog/:id', (req, res) => {
+  const id = req.params.id;
 
-
-
-
-
-
-
-
-
-
-
-// Rota de exclusão com parâmetro id
-app.delete((req, res ) => {
-  if (!req.params.id) {
-    throw "É necessário ter um id para deletar o usuário";
-  } 
-  var sql = "DELETE FROM Blog WHERE id=?";
-  connection.query(sql, req.params.id, (err, result) => {
-  if (err) throw err;
-  res.status(200).send({
-    sucess: true,
-    mensgame: "A postagem foi deletada",
-
-   })
+  db.query('DELETE FROM Blog WHERE id=?', [id], (err, row)=> {
+      console.log("Selecionei a postagem de id:", id);
+      res.redirect('/Blog');
   });
 });
 
+app.get('/user/:id', (req, res) => {
+  const id = req.params.id;
 
+  db.query('DELETE FROM users WHERE id=?', [id], (err, row)=> {
+      console.log("Selecionei o usuário de id:", id);
+      res.redirect('/indexadmin');
+  });
+});
 
+app.get('/consultas/:id', (req, res) => {
+  const id = req.params.id;
 
-
+  db.query('DELETE FROM consultas WHERE id=?', [id], (err, row)=> {
+      console.log("Selecionei a consulta de id:", id);
+      res.redirect('/medicopage');
+  });
+});
 
 app.listen(8321, () => {
   console.log('Servidor rodando na porta 8321');
