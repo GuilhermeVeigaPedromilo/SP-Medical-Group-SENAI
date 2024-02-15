@@ -122,7 +122,11 @@
                 <p><%- Blog.postagem %></p>
               </div>
               <p class="especificacao" >Autor: <%= Blog.nome %><br><%= Blog.data %></p>
-            </div>
+              <% if (Blog.nome === req.session.name) {%>
+              <a class="btn btn-danger" href="/blog/<%= Blog.id %>">DELETE</a> </div>
+              <% } else { %>
+              </div>
+              <% } %>
           <% } else  { %>
             <div id="posts" class="right">
               <div class="titlePost">
@@ -132,14 +136,18 @@
                 <p><%- Blog.postagem %></p>
               </div>
               <p class="especificacao" >Autor: <%= Blog.nome %><br><%= Blog.data %></p>
+              <% if (Blog.nome === req.session.name) {%>
+                <a class="btn btn-danger" href="/blog/<%= Blog.id %>">DELETE</a> </div>
+                <% } else { %>
             </div>
+          <% } %>
           <% } %>
   <% }); %>    
 
 </section>
 
 <section class="sectionForm" id="form">
-  <h2>Faça sua postagem - Ou veja suas postagens<a href="/mypost"> aqui</a></h2>
+  <h2>Faça sua postagem</h2>
   <form id="messageForm" action="/Blog" method="post">
       <label for="Titulo">Titulo da postagem:</label>
       <input type="text" id="titulo" name="titulo" required><br>

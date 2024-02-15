@@ -141,11 +141,11 @@
                                 <thead>
                                     <tr>
                                         <th>Id</th>
-                                        <th>Nome</th>
+                                        <th>Autor</th>
+                                        <th>Titulo</th>
                                         <th>Postagem</th>
-                                        <th>E-mail</th>
-                                        <th>Telefone</th>
-                                        <th>DELETE</th>
+                                        <th>Data</th>
+                                        <th>Exclusão</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -158,41 +158,17 @@
                                                 <%=Blog.nome%>
                                             </td>
                                             <td>
+                                                <%=Blog.titulo%>
+                                            </td>
+                                            <td>
                                                 <%=Blog.postagem%>
                                             </td>
                                             <td>
-                                                <%=Blog.email%>
+                                                <%=Blog.data%>
                                             </td>
                                             <td>
-                                                <%=Blog.telefone%>
+                                                <a class="btn btn-danger" href="/blogadmin/<%= Blog.id %>">DELETE</a>
                                             </td>
-                                            <td>
-                                            <!-- Botão que aciona a rota app.delete -->
-  <button onclick="deletePost(1)">Deletar Postagem 1</button>
-
-  <!-- Adicione mais botões conforme necessário, alterando o ID -->
-
-  <script>
-    async function deletePost(id) {
-      try {
-        const response = await fetch(`../app.js${id}`, {
-          method: 'DELETE',
-        });
-
-        const result = await response.json();
-
-        if (response.ok) {
-          alert(result.message);
-        } else {
-          alert(`Erro ao deletar postagem: ${result.error}`);
-        }
-      } catch (error) {
-        console.error('Erro ao realizar a solicitação DELETE:', error);
-        alert('Erro ao deletar postagem. Consulte o console para mais detalhes.');
-      }
-    }
-  </script>
-                                        </td>
                                             </tr>
                                         <% }); %>
                                 </tbody>

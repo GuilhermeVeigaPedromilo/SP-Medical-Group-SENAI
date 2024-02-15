@@ -420,19 +420,6 @@ app.post('/Blog', (req, res) => {
   });
 });
 
-app.get('/mypost', (req,res) => {
-  if (req.session.loggedin && req.session.name) {
-    db.query('SELECT * FROM Blog', (err, row) => {
-      if (err) throw err;
-      res.render('mypost', { req: req, dados: row });
-      console.log(req.session);
-    });
-} else {
-  // Se não estiver autenticado, redireciona para a página de login
-  res.send(404, '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon"><title>SP-Medical Group</title><style>body{align-items:center;text-align:center;justify-content:center;background-color:rgb(240,240,240);}a{color:black;}.logo{margin-top:100px;}</style></head><body><img class="logo" src="assets/SP-Medical Group/assets/img/logo.png"><br><br><br><br><br><br><br><br><br><br><br><br><a href="/login">É necessário fazer login para acessar sua página</a></body></html>');
-}
-});
-
 app.get('/blog/:id', (req, res) => {
   const id = req.params.id;
 
@@ -442,12 +429,31 @@ app.get('/blog/:id', (req, res) => {
   });
 });
 
+app.get('/blogadmin/:id', (req, res) => {
+  const id = req.params.id;
+
+  db.query('DELETE FROM Blog WHERE id=?', [id], (err, row)=> {
+      console.log("Selecionei a postagem de id:", id);
+      res.redirect('/indexadmintablepost');
+  });
+});
+
+
 app.get('/user/:id', (req, res) => {
   const id = req.params.id;
 
   db.query('DELETE FROM users WHERE id=?', [id], (err, row)=> {
       console.log("Selecionei o usuário de id:", id);
       res.redirect('/indexadmin');
+  });
+});
+
+app.get('/consultasadmin/:id', (req, res) => {
+  const id = req.params.id;
+
+  db.query('DELETE FROM consultas WHERE id=?', [id], (err, row)=> {
+      console.log("Selecionei a consulta de id:", id);
+      res.redirect('/indexadmintableconsultas');
   });
 });
 
