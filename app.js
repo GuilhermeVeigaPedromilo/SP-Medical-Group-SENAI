@@ -64,19 +64,6 @@ app.get('/', (req, res) => {
 
 });
 
-app.post('/index', (req, res) => {
-  const { nome, email, postagem, telefone } = req.body;
-  const query = 'INSERT INTO Blog (nome, email, postagem, telefone) VALUES (?, ?, ?, ?)';
-  db.query(query, [nome, email, postagem, telefone], (err, results) => {
-    if (err) {
-      console.error('Erro ao mandar mensagem', err);
-      res.send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon"><title>SP-Medical Group</title><style>body{align-items:center;text-align:center;justify-content:center;background-color:rgb(240,240,240);}a{color:black;}.logo{margin-top:100px;}</style></head><body><img class="logo" src="assets/SP-Medical Group/assets/img/logo.png"><br><br><br><br><br><br><br><br><br><br><br><br><a href="/">Erro ao tentar enviar mensagem</a></body></html>');
-    } else {
-      res.send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon"><title>SP-Medical Group</title><style>body{align-items:center;text-align:center;justify-content:center;background-color:rgb(240,240,240);}a{color:black;}.logo{margin-top:100px;}</style></head><body><img class="logo" src="assets/SP-Medical Group/assets/img/logo.png"><br><br><br><br><br><br><br><br><br><br><br><br><a href="/">Obrigado pela seu comentário, volte para sua página</a></body></html>');
-    }
-  });
-});
-
 app.get('/login', (req, res) => {
   res.render('login'); // Renders views/login.ejs
 });
@@ -151,6 +138,7 @@ app.get('/perfil', (req, res) => {
     res.send(404, '<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon"><title>SP-Medical Group</title><style>body{align-items:center;text-align:center;justify-content:center;background-color:rgb(240,240,240);}a{color:black;}.logo{margin-top:100px;}</style></head><body><img class="logo" src="assets/SP-Medical Group/assets/img/logo.png"><br><br><br><br><br><br><br><br><br><br><br><br><a href="/login">É necessário fazer login para acessar sua página</a></body></html>');
   }
 });
+
 
 app.get('/consultas', (req, res) => {
 
@@ -417,6 +405,36 @@ app.post('/Blog', (req, res) => {
     } else {
       res.send('<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon"><title>SP-Medical Group</title><style>body{align-items:center;text-align:center;justify-content:center;background-color:rgb(240,240,240);}a{color:black;}.logo{margin-top:100px;}</style></head><body><img class="logo" src="assets/SP-Medical Group/assets/img/logo.png"><br><br><br><br><br><br><br><br><br><br><br><br><a href="/Blog">Obrigado pela sua postagem, volte para sua página</a></body></html>');
     }
+  });
+});
+
+app.get('/editblog/:id', (req, res) => {
+  const id = req.params.id;
+  const selectPost = 'SELECT * FROM Blog WHERE id=?';
+
+  db.query(selectPost, [id], (err, result) => {
+      if (err) {
+          console.error('Erro ao recuperar post:', err);
+          throw err;
+      }
+      // Renderiza a página de edição de post com os dados do post recuperado
+      res.render('editblog', { req: req, Blog: result[0] });
+  });
+});
+
+app.post('/editblog/:postid', (req, res) => {
+  const postid = req.params.postid;
+  const { titulo, postagem } = req.body;
+
+  const updatePost = 'UPDATE Blog SET titulo=?, postagem=? WHERE id=?';
+
+  db.query(updatePost, [titulo, postagem, postid], (err, result) => {
+      if (err) {
+          console.error('Erro ao atualizar post:', err);
+          throw err;
+      }
+      // Redireciona para a página de exibição do post após a atualização
+      res.redirect('/Blog');
   });
 });
 

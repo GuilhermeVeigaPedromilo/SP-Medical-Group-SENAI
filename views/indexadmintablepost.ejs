@@ -164,7 +164,7 @@
                                                 <%=Blog.postagem%>
                                             </td>
                                             <td>
-                                                <%=Blog.data%>
+                                                <%=Blog.data.toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'})%>
                                             </td>
                                             <td>
                                                 <a class="btn btn-danger" href="/blogadmin/<%= Blog.id %>">DELETE</a>

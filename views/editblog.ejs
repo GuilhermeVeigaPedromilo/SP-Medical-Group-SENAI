@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>SP-Medical Group</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/SP-Medical Group/assets/img/logoicon.png" rel="icon">
+
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/SP-Medical Group/assets/css/style.css" rel="stylesheet">
+  <link href="assets/SP-Medical Group/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/SP-Medical Group/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/SP-Medical Group/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/SP-Medical Group/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/SP-Medical Group/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/SP-Medical Group/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/SP-Medical Group/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/SP-Medical Group/assets/css/style.css" rel="stylesheet">
+  <link href="assets/css/Blog.css" rel="stylesheet">
+  <!-- Adicione o link para o Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Adicione o link para o jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <!-- Adicione o link para o Bootstrap 5 JS e Popper.js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- =======================================================
+  * Template Name: SP-Medical Group
+  * Updated: Sep 18 2023 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/SP-Medical Group-free-medical-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+<section class="sectionForm" id="form">
+  <h2>Edite sua postagem</h2>
+  <form id="messageForm" action="/editblog/<%= Blog.id %>" method="POST">
+      <label for="Titulo">Titulo da postagem:</label>
+      <textarea type="text" id="titulo" name="titulo" required><%=Blog.titulo%></textarea><br>
+      <br>
+      <label for="postagem">Mensagem:</label>
+      <textarea type="text" id="postagem" name="postagem"  required><%=Blog.postagem%></textarea>
+      <button type="submit">Enviar Mensagem</button>
+  </form>
+</section>
+
+<section class="section">
+    <!-- Área para exibir mensagens -->
+            <div id="posts">
+              <div class="titlePost">
+                <b><%= Blog.titulo %></p></b>
+              </div>
+              <div class="textPost">
+                <p><%- Blog.postagem %></p>
+              </div>
+              <p class="especificacao" >Autor: <%= Blog.nome %><br><%= Blog.data.toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'}) %></p>
+              <a class="btn btn-danger" href="/blog/<%= Blog.id %>">DELETE</a> </div>
+              </div>
+
+
+</section>
+
+<style>
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+
+  .section{
+    width: 100%;
+    padding: 20px;
+    background-color: #f6fbff;
+  }
+  
+  /* .section {
+      max-width: 100%;
+      margin: 20px auto;
+      background-color: rgb(255, 255, 255);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border: 30px solid rgb(207, 232, 248);
+      border-bottom: none;
+      border-left: none;
+      border-right: none;
+  } */
+
+  .sectionForm {
+    max-width: 100%;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+  
+  label {
+      display: block;
+      margin-bottom: 10px;
+  }
+  
+  input,
+  textarea {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+  }
+  
+  button {
+    display: block;
+    width: 200px;
+    height: 50px;
+      background-color: #51b3f1;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      margin-top: 2.5%;
+  }
+  
+  button:hover {
+      background-color: #428ed4;
+      transition-delay: 0.4s;
+  }
+
+  #posts{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 30%;
+    background-color: white;
+    border-radius: 20px;
+    transition: 0.4s;
+  }
+
+  #posts:hover{
+    width: 35%;
+  }
+
+  .textPost{
+    word-wrap: break-word;
+  }
+
+  .titlePost{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #000;
+    margin-bottom: 10px;
+  }
+
+  .titlePost img{
+    margin-top: -17px;
+    margin-right: 5px;
+  }
+
+  img {
+    width: 45px;
+    height: 45px;
+    font-size: 45px;
+  }
+
+  .titlePost p{
+    font-weight: bold;
+    font-size: 22px;
+  }
+  
+  .right{
+    margin-left: auto;
+    margin-right: 0; 
+  }
+
+  .especificacao {
+    font-size: 10px;
+    color: gray;
+  }
+  
+
+</style>
+  
+    </body>
+
+    
+    </html>

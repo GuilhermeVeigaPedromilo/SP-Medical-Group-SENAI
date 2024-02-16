@@ -121,9 +121,9 @@
               <div class="textPost">
                 <p><%- Blog.postagem %></p>
               </div>
-              <p class="especificacao" >Autor: <%= Blog.nome %><br><%= Blog.data %></p>
+              <p class="especificacao" >Autor: <%= Blog.nome %><br><%= Blog.data.toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'})%></p>
               <% if (Blog.nome === req.session.name) {%>
-              <a class="btn btn-danger" href="/blog/<%= Blog.id %>">DELETE</a> </div>
+              <a class="btn btn-danger" href="/blog/<%= Blog.id %>">DELETE</a><br><a class="edit" href="/editblog/<%= Blog.id %>" >EDIT</a> </div>
               <% } else { %>
               </div>
               <% } %>
@@ -135,9 +135,9 @@
               <div class="textPost">
                 <p><%- Blog.postagem %></p>
               </div>
-              <p class="especificacao" >Autor: <%= Blog.nome %><br><%= Blog.data %></p>
+              <p class="especificacao" >Autor: <%= Blog.nome %><br><%= Blog.data.toLocaleString('pt-BR', {dateStyle: 'short', timeStyle: 'short'}) %></p>
               <% if (Blog.nome === req.session.name) {%>
-                <a class="btn btn-danger" href="/blog/<%= Blog.id %>">DELETE</a> </div>
+                <a class="btn btn-danger" href="/blog/<%= Blog.id %>">DELETE</a><br><a class="edit" href="/editblog/<%= Blog.id %>" >EDIT</a> </div>
                 <% } else { %>
             </div>
           <% } %>
